@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { src: "img/tfg-1.webp", fit: "cover"},
         { src: "img/eina_2021-2.webp", fit: "cover"},
         { src: "img/Camperlab-Seoul-2.webp", fit: "cover"},
-        { src: "img/Adrià-Escribano-2.webp", fit: "cover"},
+        { src: "img/Adria-Escribano-02.webp", fit: "cover"},
         { src: "img/Camper-Archive.webp", fit: "contain"},
         { src: "img/Paula-Chacartegui-1.webp", fit: "contain"},
         { src: "img/Anells-Triptic+logo.webp", fit: "cover"},
