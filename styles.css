@@ -342,6 +342,7 @@ h3 {
 
 .info-element {
   display: contents;
+  white-space: nowrap; /* This will prevent text from wrapping */
 }
 
 /* Add this CSS to handle the display of the project-info when hovering over grid items */
