@@ -134,11 +134,12 @@ document.getElementById('gridAnchor').addEventListener('click', function(event) 
 
 document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
-        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "contain"},
+        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover"},
         { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover"},
+        { src: "img/Desktop-Homepage-menu.webp", fit: "cover"},
         { src: "img/tfg-1.webp", fit: "cover"},
         { src: "img/eina_2021-2.webp", fit: "cover"},
-        { src: "img/Atlantic-Info-Crop2.webp", fit: "contain"},
+        { src: "img/Atlantic-Info.webp", fit: "cover"},
         { src: "img/Camperlab-Seoul-2.webp", fit: "cover"},
         { src: "img/Adria-Escribano-02.webp", fit: "cover"},
         { src: "img/Camper-Archive.webp", fit: "contain"},
