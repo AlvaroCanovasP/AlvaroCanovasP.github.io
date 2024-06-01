@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
         { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover"},
         { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover"},
+        { src: "img/Carner-Ibiza.webp", fit: "contain"},
         { src: "img/Desktop-Homepage-menu.webp", fit: "cover"},
         { src: "img/tfg-1.webp", fit: "cover"},
         { src: "img/eina_2021-2.webp", fit: "cover"},
