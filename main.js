@@ -134,26 +134,26 @@ document.getElementById('gridAnchor').addEventListener('click', function(event) 
 
 document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
-        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover"},
-        { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover"},
-        { src: "img/Carner-Ibiza.webp", fit: "contain"},
-        { src: "img/Desktop-Homepage-menu.webp", fit: "cover"},
-        { src: "img/tfg-1.webp", fit: "cover"},
-        { src: "img/eina_2021-2.webp", fit: "cover"},
-        { src: "img/Atlantic-Info.webp", fit: "cover"},
-        { src: "img/Camperlab-Seoul-2.webp", fit: "cover"},
-        { src: "img/Adria-Escribano-02.webp", fit: "cover"},
-        { src: "img/Camper-Archive.webp", fit: "contain"},
-        { src: "img/Paula-Chacartegui-1.webp", fit: "contain"},
-        { src: "img/Anells-Triptic+logo.webp", fit: "cover"},
-        { src: "img/Portfolio-Julia_Espinola-01.webp", fit: "cover"},
-        { src: "img/tfg-detall-3.webp", fit: "contain"},
-        { src: "img/kids-portada-FINAL-5.webp", fit: "cover"},
+        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", type: "image" },
+        { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", type: "image" },
+        { src: "img/Carner-Ibiza.webp", fit: "contain", type: "image" },
+        { src: "videos/Web-Xavier-Guillen-Clips.mp4", fit: "cover", type: "video" },
+        { src: "img/tfg-1.webp", fit: "cover", type: "image" },
+        { src: "img/eina_2021-2.webp", fit: "cover", type: "image" },
+        { src: "img/Atlantic-Info.webp", fit: "cover", type: "image" },
+        { src: "img/Camperlab-Seoul-2.webp", fit: "cover", type: "image" },
+        { src: "img/Adria-Escribano-02.webp", fit: "cover", type: "image" },
+        { src: "img/Camper-Archive.webp", fit: "contain", type: "image" },
+        { src: "img/Paula-Chacartegui-1.webp", fit: "contain", type: "image" },
+        { src: "img/Anells-Triptic+logo.webp", fit: "cover", type: "image" },
+        { src: "img/Portfolio-Julia_Espinola-01.webp", fit: "cover", type: "image" },
+        { src: "img/tfg-detall-3.webp", fit: "contain", type: "image" },
+        { src: "img/kids-portada-FINAL-5.webp", fit: "cover", type: "image" },
     ];
     let currentImageIndex = 0;
     let interval;
     let isMouseDown = false;
-    const wrapper = document.querySelector('.slideshow-wrapper img');
+    const wrapper = document.querySelector('.slideshow-wrapper');
 
     function loadImage(imageDetail) {
         return new Promise((resolve, reject) => {
@@ -166,21 +166,58 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function loadVideo(videoDetail) {
+        return new Promise((resolve, reject) => {
+            let video = document.createElement('video');
+            video.onloadeddata = function() {
+                resolve(video);
+            };
+            video.onerror = reject;
+            video.src = videoDetail.src;
+            video.style.objectFit = 'cover';
+            video.style.width = '100%';
+            video.style.height = '100%';
+            video.autoplay = true;
+            video.loop = false;
+            video.muted = true;
+        });
+    }
+
     async function updateImage() {
         const imageDetail = imageDetails[currentImageIndex];
         try {
-            await loadImage(imageDetail); // Wait for the image to load
-            wrapper.src = imageDetail.src;
-            wrapper.style.objectFit = imageDetail.fit;
-            currentImageIndex = (currentImageIndex + 1) % imageDetails.length;
+            if (imageDetail.type === "image") {
+                await loadImage(imageDetail); // Wait for the image to load
+                const imgElement = wrapper.querySelector('img') || document.createElement('img');
+                imgElement.src = imageDetail.src;
+                imgElement.style.objectFit = imageDetail.fit;
+                if (!wrapper.contains(imgElement)) {
+                    wrapper.innerHTML = '';
+                    wrapper.appendChild(imgElement);
+                }
+                startSlideshow(); // Restart the slideshow interval for images
+            } else if (imageDetail.type === "video") {
+                const videoElement = await loadVideo(imageDetail); // Wait for the video to load
+                videoElement.onended = function() {
+                    currentImageIndex = (currentImageIndex + 1) % imageDetails.length;
+                    updateImage();
+                };
+                wrapper.innerHTML = '';
+                wrapper.appendChild(videoElement);
+                videoElement.play();
+                stopSlideshow(); // Stop the slideshow interval for videos
+            }
         } catch (error) {
-            console.error("Error loading image: ", error);
+            console.error("Error loading media: ", error);
         }
     }
 
     function startSlideshow() {
         if (!interval) {
-            interval = setInterval(updateImage, 5000);
+            interval = setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % imageDetails.length;
+                updateImage();
+            }, 3000);
         }
     }
 
@@ -189,9 +226,28 @@ document.addEventListener('DOMContentLoaded', function () {
         interval = null;
     }
 
-    wrapper.addEventListener('click', function () {
+    wrapper.addEventListener('click', function (event) {
         if (!isMouseDown) {
+            const rect = wrapper.getBoundingClientRect();
+            const x = event.clientX - rect.left; // x position within the element
+            if (x < rect.width / 2) {
+                // Clicked on the left side, go to the previous image
+                currentImageIndex = (currentImageIndex - 1 + imageDetails.length) % imageDetails.length;
+            } else {
+                // Clicked on the right side, go to the next image
+                currentImageIndex = (currentImageIndex + 1) % imageDetails.length;
+            }
             updateImage();
+        }
+    });
+
+    wrapper.addEventListener('mousemove', function (event) {
+        const rect = wrapper.getBoundingClientRect();
+        const x = event.clientX - rect.left; // x position within the element
+        if (x < rect.width / 2) {
+            wrapper.style.cursor = 'w-resize';
+        } else {
+            wrapper.style.cursor = 'e-resize';
         }
     });
 
