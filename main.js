@@ -135,18 +135,19 @@ document.getElementById('gridAnchor').addEventListener('click', function(event) 
 document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
         { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", type: "image" },
+        { src: "img/Delarge-web-Portada.webp", fit: "cover", type: "image" },
         { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", type: "image" },
         { src: "img/Carner-Ibiza.webp", fit: "contain", type: "image" },
+        { src: "img/Delarge-Packaging-2.webp", fit: "cover", type: "image" },
         { src: "videos/Web-Xavier-Guillen-Clips.mp4", fit: "cover", type: "video" },
         { src: "img/tfg-1.webp", fit: "cover", type: "image" },
-        { src: "img/eina_2021-2.webp", fit: "cover", type: "image" },
         { src: "img/Atlantic-Info.webp", fit: "cover", type: "image" },
+        { src: "img/Adria-Escribano-Portada.webp", fit: "cover", type: "image" },
         { src: "img/Camperlab-Seoul-2.webp", fit: "cover", type: "image" },
-        { src: "img/Adria-Escribano-02.webp", fit: "cover", type: "image" },
-        { src: "img/Camper-Archive.webp", fit: "contain", type: "image" },
         { src: "img/Paula-Chacartegui-1.webp", fit: "contain", type: "image" },
         { src: "img/Anells-Triptic+logo.webp", fit: "cover", type: "image" },
         { src: "img/Portfolio-Julia_Espinola-01.webp", fit: "cover", type: "image" },
+        { src: "img/eina_2021-2.webp", fit: "cover", type: "image" },
         { src: "img/tfg-detall-3.webp", fit: "contain", type: "image" },
         { src: "img/kids-portada-FINAL-5.webp", fit: "cover", type: "image" },
     ];
