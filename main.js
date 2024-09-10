@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { src: "img/Adria-Escribano-Portada.webp", fit: "cover", type: "image" },
         { src: "img/Camperlab-Seoul-2.webp", fit: "cover", type: "image" },
         { src: "img/Paula-Chacartegui-1.webp", fit: "contain", type: "image" },
+        { src: "img/Topol-Title-Pink-Portada.webp", fit: "cover", type: "image" },
         { src: "img/Anells-Triptic+logo.webp", fit: "cover", type: "image" },
         { src: "img/Portfolio-Julia_Espinola-01.webp", fit: "cover", type: "image" },
         { src: "img/eina_2021-2.webp", fit: "cover", type: "image" },
