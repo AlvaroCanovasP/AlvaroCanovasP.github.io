@@ -134,23 +134,24 @@ document.getElementById('gridAnchor').addEventListener('click', function(event) 
 
 document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
-        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", type: "image" },
-        { src: "img/Delarge-web-Portada.webp", fit: "cover", type: "image" },
-        { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", type: "image" },
-        { src: "img/Carner-Ibiza.webp", fit: "contain", type: "image" },
-        { src: "img/Delarge-Packaging-2.webp", fit: "cover", type: "image" },
-        { src: "videos/Web-Xavier-Guillen-Clips.mp4", fit: "cover", type: "video" },
-        { src: "img/tfg-1.webp", fit: "cover", type: "image" },
-        { src: "img/Atlantic-Info.webp", fit: "cover", type: "image" },
-        { src: "img/Adria-Escribano-Portada.webp", fit: "cover", type: "image" },
-        { src: "img/Camperlab-Seoul-2.webp", fit: "cover", type: "image" },
-        { src: "img/Paula-Chacartegui-1.webp", fit: "contain", type: "image" },
-        { src: "img/Topol-Title-Pink-Portada.webp", fit: "cover", type: "image" },
-        { src: "img/Anells-Triptic+logo.webp", fit: "cover", type: "image" },
-        { src: "img/Portfolio-Julia_Espinola-01.webp", fit: "cover", type: "image" },
-        { src: "img/eina_2021-2.webp", fit: "cover", type: "image" },
-        { src: "img/tfg-detall-3.webp", fit: "contain", type: "image" },
-        { src: "img/kids-portada-FINAL-5.webp", fit: "cover", type: "image" },
+        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Natalia-Cornudella-3.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Delarge-web-Portada.webp", fit: "cover", mobileFit: "contain", type: "image" },
+        { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Carner-Ibiza.webp", fit: "contain", mobileFit: "contain", type: "image" },
+        { src: "img/Delarge-Packaging-2.webp", fit: "cover", mobileFit: "contain", type: "image" },
+        { src: "videos/Web-Xavier-Guillen-Clips.mp4", fit: "cover", mobileFit: "contain", type: "video" },
+        { src: "img/tfg-1.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Atlantic-Info.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Adria-Escribano-Portada.webp", fit: "cover", mobileFit: "contain", type: "image" },
+        { src: "img/Camperlab-Seoul-2.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Paula-Chacartegui-1.webp", fit: "contain", mobileFit: "contain", type: "image" },
+        { src: "img/Topol-Title-Pink-Portada.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Anells-Triptic+logo.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Portfolio-Julia_Espinola-01.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/eina_2021-2.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/tfg-detall-3.webp", fit: "contain", mobileFit: "contain", type: "image" },
+        { src: "img/kids-portada-FINAL-5.webp", fit: "cover", mobileFit: "contain", type: "image" },
     ];
     let currentImageIndex = 0;
     let interval;
@@ -185,21 +186,26 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    function isMobile() {
+        return window.matchMedia("(max-width: 768px)").matches;
+    }
+
     async function updateImage() {
         const imageDetail = imageDetails[currentImageIndex];
         try {
             if (imageDetail.type === "image") {
-                await loadImage(imageDetail); // Wait for the image to load
+                await loadImage(imageDetail);
                 const imgElement = wrapper.querySelector('img') || document.createElement('img');
                 imgElement.src = imageDetail.src;
-                imgElement.style.objectFit = imageDetail.fit;
+                imgElement.style.objectFit = isMobile() ? imageDetail.mobileFit : imageDetail.fit;
                 if (!wrapper.contains(imgElement)) {
                     wrapper.innerHTML = '';
                     wrapper.appendChild(imgElement);
                 }
-                startSlideshow(); // Restart the slideshow interval for images
+                startSlideshow();
             } else if (imageDetail.type === "video") {
-                const videoElement = await loadVideo(imageDetail); // Wait for the video to load
+                const videoElement = await loadVideo(imageDetail);
+                videoElement.style.objectFit = isMobile() ? imageDetail.mobileFit : imageDetail.fit;
                 videoElement.onended = function() {
                     currentImageIndex = (currentImageIndex + 1) % imageDetails.length;
                     updateImage();
@@ -207,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 wrapper.innerHTML = '';
                 wrapper.appendChild(videoElement);
                 videoElement.play();
-                stopSlideshow(); // Stop the slideshow interval for videos
+                stopSlideshow();
             }
         } catch (error) {
             console.error("Error loading media: ", error);
