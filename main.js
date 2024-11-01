@@ -136,6 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
         { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Natalia-Cornudella-3.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/VIETA AUDIO ELECTRONICA.webp", fit: "contain", mobileFit: "contain", type: "image" },
         { src: "img/Delarge-web-Portada.webp", fit: "cover", mobileFit: "contain", type: "image" },
         { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Carner-Ibiza.webp", fit: "contain", mobileFit: "contain", type: "image" },
