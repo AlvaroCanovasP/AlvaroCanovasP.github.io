@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', function () {
         { src: "img/Delarge-web-Portada.webp", fit: "cover", mobileFit: "contain", type: "image" },
         { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Carner-Ibiza.webp", fit: "contain", mobileFit: "contain", type: "image" },
-        { src: "img/Xavier-Guillen-Viz-1.webp", fit: "cover", mobileFit: "contain", type: "image" },
+        { src: "img/Xavier-Guillen-Viz-1.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Delarge-Main-Slideshow.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/tfg-1.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Atlantic-Info.webp", fit: "cover", mobileFit: "cover", type: "image" },
