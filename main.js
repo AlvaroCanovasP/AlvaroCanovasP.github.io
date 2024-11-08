@@ -134,13 +134,14 @@ document.getElementById('gridAnchor').addEventListener('click', function(event) 
 
 document.addEventListener('DOMContentLoaded', function () {
     const imageDetails = [
-        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Atlantique-HW-Text-Pages-v3.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Natalia-Cornudella-3.webp", fit: "cover", mobileFit: "cover", type: "image" },
-        { src: "img/VIETA AUDIO ELECTRONICA.webp", fit: "contain", mobileFit: "contain", type: "image" },
+        { src: "img/05-02_HW_Pacific-Key-v2.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Delarge-web-Portada.webp", fit: "cover", mobileFit: "contain", type: "image" },
         { src: "img/Julia-Spinola-Invite-FINAL.webp", fit: "cover", mobileFit: "cover", type: "image" },
-        { src: "img/Carner-Ibiza.webp", fit: "contain", mobileFit: "contain", type: "image" },
+        { src: "img/VIETA AUDIO ELECTRONICA.webp", fit: "contain", mobileFit: "contain", type: "image" },
         { src: "img/Xavier-Guillen-Viz-1.webp", fit: "cover", mobileFit: "cover", type: "image" },
+        { src: "img/Carner-Ibiza.webp", fit: "contain", mobileFit: "contain", type: "image" },
         { src: "img/Delarge-Main-Slideshow.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/tfg-1.webp", fit: "cover", mobileFit: "cover", type: "image" },
         { src: "img/Atlantic-Info.webp", fit: "cover", mobileFit: "cover", type: "image" },
@@ -227,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function () {
             interval = setInterval(() => {
                 currentImageIndex = (currentImageIndex + 1) % imageDetails.length;
                 updateImage();
-            }, 3000);
+            }, 5000);
         }
     }
 
